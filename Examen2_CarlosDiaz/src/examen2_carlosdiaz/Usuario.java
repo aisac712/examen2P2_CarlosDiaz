@@ -1,8 +1,9 @@
 package examen2_carlosdiaz;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Usuario extends Persona{
+public class Usuario extends Persona implements Serializable{
     private String user;
     private String pw;
     private ArrayList<Chat> chats = new ArrayList();
@@ -68,7 +69,7 @@ public class Usuario extends Persona{
     
     @Override
     public String toString() {
-        return user + ": " + this.toString();
+        return user + ": " + this.getNombre();
     }
 
     @Override

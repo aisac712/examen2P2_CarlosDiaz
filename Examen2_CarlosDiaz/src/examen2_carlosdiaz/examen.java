@@ -1,11 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package examen2_carlosdiaz;
 
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -18,6 +18,9 @@ public class examen extends javax.swing.JFrame {
      */
     public examen() {
         initComponents();
+        modeloBASE = (DefaultTreeModel) tree_chats.getModel();
+        ingresar();
+        //chat0();
     }
 
     /**
@@ -51,6 +54,15 @@ public class examen extends javax.swing.JFrame {
         sp_calidadWifi = new javax.swing.JSpinner();
         b_crearCuenta = new javax.swing.JButton();
         tf_userC = new javax.swing.JTextField();
+        jd_enviarSolicitud = new javax.swing.JDialog();
+        jLabel16 = new javax.swing.JLabel();
+        tf_userE = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        b_enviarSoli = new javax.swing.JButton();
+        popup_enviarMensaje = new javax.swing.JPopupMenu();
+        enviarMensaje = new javax.swing.JMenuItem();
+        popup_verMensaje = new javax.swing.JPopupMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         lista_amigos = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
@@ -58,12 +70,12 @@ public class examen extends javax.swing.JFrame {
         tree_chats = new javax.swing.JTree();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        lista_amigos1 = new javax.swing.JList<>();
+        inbox = new javax.swing.JList<>();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        label_hora = new javax.swing.JLabel();
+        rb_leido = new javax.swing.JRadioButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        ta_mensaje = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
@@ -247,38 +259,115 @@ public class examen extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
+        jLabel16.setFont(new java.awt.Font("Candara", 0, 17)); // NOI18N
+        jLabel16.setText("Usuario");
+
+        jLabel17.setFont(new java.awt.Font("Candara", 1, 22)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("Enviar Solicitud");
+
+        b_enviarSoli.setText("Enviar");
+        b_enviarSoli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_enviarSoliActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_enviarSolicitudLayout = new javax.swing.GroupLayout(jd_enviarSolicitud.getContentPane());
+        jd_enviarSolicitud.getContentPane().setLayout(jd_enviarSolicitudLayout);
+        jd_enviarSolicitudLayout.setHorizontalGroup(
+            jd_enviarSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_enviarSolicitudLayout.createSequentialGroup()
+                .addGroup(jd_enviarSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(b_enviarSoli)
+                    .addGroup(jd_enviarSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jd_enviarSolicitudLayout.createSequentialGroup()
+                            .addGap(110, 110, 110)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jd_enviarSolicitudLayout.createSequentialGroup()
+                            .addGap(43, 43, 43)
+                            .addComponent(jLabel16)
+                            .addGap(43, 43, 43)
+                            .addComponent(tf_userE, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+        jd_enviarSolicitudLayout.setVerticalGroup(
+            jd_enviarSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_enviarSolicitudLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addGroup(jd_enviarSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(tf_userE, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
+                .addComponent(b_enviarSoli)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
+        enviarMensaje.setText("Enviar mensaje");
+        enviarMensaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarMensajeActionPerformed(evt);
+            }
+        });
+        popup_enviarMensaje.add(enviarMensaje);
+
+        jMenuItem3.setText("jMenuItem3");
+        popup_verMensaje.add(jMenuItem3);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lista_amigos.setFont(new java.awt.Font("Candara", 0, 15)); // NOI18N
+        lista_amigos.setModel(new DefaultListModel());
+        lista_amigos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lista_amigosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(lista_amigos);
 
         jLabel1.setFont(new java.awt.Font("Candara", 0, 17)); // NOI18N
         jLabel1.setText("Amigos");
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Chats");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Privados");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Grupales");
+        treeNode1.add(treeNode2);
         tree_chats.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        tree_chats.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tree_chatsMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tree_chats);
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 17)); // NOI18N
         jLabel2.setText("Chats");
 
-        lista_amigos1.setFont(new java.awt.Font("Candara", 0, 15)); // NOI18N
-        jScrollPane2.setViewportView(lista_amigos1);
+        inbox.setFont(new java.awt.Font("Candara", 0, 15)); // NOI18N
+        jScrollPane2.setViewportView(inbox);
 
         jLabel3.setFont(new java.awt.Font("Candara", 0, 17)); // NOI18N
         jLabel3.setText("Mensajes");
 
-        jLabel4.setFont(new java.awt.Font("Candara", 0, 16)); // NOI18N
-        jLabel4.setText("escrito:");
+        label_hora.setFont(new java.awt.Font("Candara", 0, 16)); // NOI18N
+        label_hora.setText("escrito:");
 
-        jRadioButton1.setFont(new java.awt.Font("Candara", 0, 15)); // NOI18N
-        jRadioButton1.setText("Leído");
+        rb_leido.setFont(new java.awt.Font("Candara", 0, 15)); // NOI18N
+        rb_leido.setText("Leído");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane4.setViewportView(jTextArea1);
+        ta_mensaje.setColumns(20);
+        ta_mensaje.setRows(5);
+        jScrollPane4.setViewportView(ta_mensaje);
 
         jButton1.setText("+Amigo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -314,20 +403,24 @@ public class examen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(84, 84, 84)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton1)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton1)
+                        .addComponent(rb_leido)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
+                        .addComponent(label_hora)
                         .addGap(82, 82, 82))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -367,8 +460,8 @@ public class examen extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jRadioButton1))
+                    .addComponent(label_hora)
+                    .addComponent(rb_leido))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -377,12 +470,91 @@ public class examen extends javax.swing.JFrame {
 
     private void b_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_ingresarActionPerformed
         // BOTON INGRESAR SESION
+        usuarios = new ArrayList();                                             //la reinicio por cualquier cosa
         
+        int posicioUuser=0, posicioUuserEnviaSolicitud=0;
+        admiUsuarios ac=new admiUsuarios("./Usuarios.ex");
+        ac.cargarArchivo();
+        for (int i = 0; i < ac.getListaUsuarios().size(); i++) {
+            usuarios.add(ac.getListaUsuarios().get(i));
+            System.out.println(ac.getListaUsuarios().get(i).getUser());
+        }
+        
+        String userExistente = null, pwUserExistente;       int contador=0, flag=0;
+        for (int i = 0; i < usuarios.size(); i++) {
+            userExistente = usuarios.get(i).getUser();    pwUserExistente = usuarios.get(i).getPw();
+            if(tf_user.getText().equals(userExistente) && tf_pass.getText().equals(pwUserExistente)){
+                usuarioIngresado = usuarios.get(i);
+                JOptionPane.showMessageDialog(this, "Bienvenido "+usuarios.get(i).getNombre());
+                jd_ingresar.setVisible(false);
+                flag=1;     //se ingreso sesion
+            }
+            contador++;
+        }
+        //if(contador==(usuarios.size()-1) && flag==0){
+        if(flag==1){
+            for (int i = 0; i < ac.getListaUsuarios().size(); i++) {
+                if (userExistente.equals(ac.getListaUsuarios().get(i).getUser())){
+                    posicioUuser=i;
+                }
+            }
+
+
+
+            for (int i = 0; i < ac.getListaUsuarios().get(posicioUuser).getSolicitudes().size(); i++) {             //cargo las solicitudes de amistad q le han enviado
+                Usuario userEnviaSolicitud = ac.getListaUsuarios().get(posicioUuser).getSolicitudes().get(i);
+                int input = JOptionPane.showConfirmDialog(null,
+                    "Aceptas la amistad de "+userEnviaSolicitud.getUser(), "Solicitud de amistad",JOptionPane.YES_NO_CANCEL_OPTION);
+                // 0=yes, 1=no, 2=cancel
+                if(input==0){                                                                                       //la aceptó
+                    ac.getListaUsuarios().get(posicioUuser).getSolicitudes().remove(i);                             //la elimino para q no se le repita
+
+                    for (int j = 0; j < ac.getListaUsuarios().size(); j++) {                                        //añadir amigo en el que envio la soli
+                        if (userEnviaSolicitud.getUser().equals(ac.getListaUsuarios().get(j).getUser())){
+                            posicioUuserEnviaSolicitud=j;
+                            userEnviaSolicitud.getAmigos().add(usuarioIngresado);                                   
+                        }
+                    }
+
+                    ac.getListaUsuarios().get(posicioUuser).getAmigos().add( ac.getListaUsuarios().get(posicioUuserEnviaSolicitud) );       //añadir amigo en el que ingreso sesion
+                    
+                    admiAmigos aA=new admiAmigos("./Binarios/"+userEnviaSolicitud.getUser()+"A.ex");
+                    aA.cargarArchivo();
+                    aA.setAmigo(usuarioIngresado);
+                    aA.escribirArchivo();
+                    
+                    admiAmigos aA2=new admiAmigos("./Binarios/"+usuarioIngresado.getUser()+"A.ex");
+                    aA2.cargarArchivo();
+                    aA2.setAmigo(userEnviaSolicitud);
+                    aA2.escribirArchivo();
+                }
+                System.out.println(input);
+            }
+
+            ac.escribirArchivo();
+            
+            //CARGAR AMIGOS
+            admiAmigos aA=new admiAmigos("./Binarios/"+usuarioIngresado.getUser()+"A.ex");
+            aA.cargarArchivo();
+            DefaultListModel modelo = (DefaultListModel) lista_amigos.getModel();
+            for ( Usuario u : aA.getListaAmigos() ) {
+                System.out.println(u);
+                modelo.addElement(u);
+            }
+            lista_amigos.setModel(modelo);
+            
+            tree_chats.setModel(modeloBASE);
+        } else{
+            JOptionPane.showMessageDialog(this, "Esa cuenta no existe, probá con una diferente");
+        }
     }//GEN-LAST:event_b_ingresarActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // MOSTRAR VENTANA CREAR CUENTA
-        
+        jd_crearCuenta.setModal(true);
+        jd_crearCuenta.pack();
+        jd_crearCuenta.setLocationRelativeTo(this);
+        jd_crearCuenta.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void b_crearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_crearCuentaActionPerformed
@@ -391,8 +563,119 @@ public class examen extends javax.swing.JFrame {
         while(wifi<=0 || wifi>=6){
             wifi = Integer.parseInt( JOptionPane.showInputDialog(this, "La calidad del wifi debe estar entre 1 y 5") );
         }
-        Usuario s = new Usuario(tf_pwC.getText(), tf_pass.getText(), wifi, tf_nombre.getText(), tf_apellido.getText(), Integer.parseInt(tf_telefono.getText()));
+        Usuario s = new Usuario(tf_userC.getText(), tf_pwC.getText(), wifi, tf_nombre.getText(), tf_apellido.getText(), Integer.parseInt(tf_telefono.getText()));
+        
+        admiUsuarios ac=new admiUsuarios("./Usuarios.ex");
+        ac.cargarArchivo();
+        ac.setUsuario(s);
+        ac.escribirArchivo();
+        
+        JOptionPane.showMessageDialog(this, "Se creó la cuenta exitosamente");
+        jd_crearCuenta.setVisible(false);
+        //usuarios.add(s);
     }//GEN-LAST:event_b_crearCuentaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // MOSTRAR JD DE ENVIAR SOLICITUD
+        jd_enviarSolicitud.setModal(true);
+        jd_enviarSolicitud.pack();
+        jd_enviarSolicitud.setLocationRelativeTo(this);
+        jd_enviarSolicitud.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void b_enviarSoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_enviarSoliActionPerformed
+        // ENVIAR SOLICITUD
+        admiUsuarios ac=new admiUsuarios("./Usuarios.ex");
+        ac.cargarArchivo();
+        int k=0;
+        for (int i = 0; i < ac.getListaUsuarios().size(); i++) {
+            
+            Usuario menEnviarSoli = ac.getListaUsuarios().get(i);
+            if(menEnviarSoli.getUser().equals(tf_userE.getText())){
+                menEnviarSoli.getSolicitudes().add(usuarioIngresado);           //para luego cargar estas solicitudes
+                JOptionPane.showMessageDialog(this, "Se envió la solicitud de amistad a "+menEnviarSoli.getNombre());
+                jd_enviarSolicitud.setVisible(false);
+                ac.escribirArchivo();
+            }
+            k++;
+        }
+        if(k!=ac.getListaUsuarios().size()){
+            JOptionPane.showMessageDialog(this, "No existe un usuario con ese user. Prueba de nuevo");
+        }
+    }//GEN-LAST:event_b_enviarSoliActionPerformed
+
+    private void lista_amigosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lista_amigosMouseClicked
+        // CLICK DERECHO SOBRE LISTA AMIGOS
+        if(evt.isMetaDown()){
+            if (lista_amigos.getSelectedIndex() >= 0) {
+                popup_enviarMensaje.show(evt.getComponent(), evt.getX(), evt.getY());
+            }
+        }
+    }//GEN-LAST:event_lista_amigosMouseClicked
+
+    private void enviarMensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarMensajeActionPerformed
+        // LEER MENSAJE A ENVIAR
+        System.out.println("");
+        DefaultListModel modeloLista = (DefaultListModel) lista_amigos.getModel();
+        Usuario usuarioAEnviar = (Usuario) modeloLista.get( lista_amigos.getSelectedIndex() );
+        
+        //admiPrivados aP = new admiPrivados("./Binarios/"+usuarioIngresado.getUser()+"_"+usuarioAEnviar.getUser()+".ex");
+        admiPrivados aP = new admiPrivados("./Binarios/"+"chatsPrivados"+".ex");
+        aP.cargarArchivo();
+        
+        for (int i = 0; i < aP.getListaChatsPrivs().size(); i++) {
+        //for (int i = 0; i < 1; i++) {
+            cPrivado chat = aP.getListaChatsPrivs().get(i);
+            if((chat.getUserAEscribir().getUser().equals(usuarioAEnviar.getUser()) && chat.getUserEscribe().getUser().equals(usuarioIngresado.getUser()))
+                    || (chat.getUserAEscribir().getUser().equals(usuarioIngresado.getUser()) && chat.getUserEscribe().getUser().equals(usuarioAEnviar.getUser())) ){
+                System.out.println("chat ya creado");
+            } else{
+                System.out.println("chat nuevo");
+                
+                String contenido = JOptionPane.showInputDialog(this, "Mensaje:");
+                Date h = new Date();
+                Mensaje m = new Mensaje(contenido, h, h, false);
+                
+                cPrivado shat = new cPrivado(usuarioAEnviar, usuarioIngresado);
+                shat.getMensajes().add(m);
+                aP.setChat(shat);
+                
+                cPrivado shat2 = new cPrivado(usuarioIngresado, usuarioAEnviar);
+                shat2.getMensajes().add(m);
+                aP.setChat(shat2);
+                
+                DefaultTreeModel modeloARBOL = (DefaultTreeModel) tree_chats.getModel();
+                DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+                
+                raiz.getChildAt(0);
+                DefaultMutableTreeNode p = new DefaultMutableTreeNode(usuarioAEnviar);
+                ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
+                System.out.println(" se añade al arbol a "+usuarioAEnviar.getUser());
+            }
+        }
+        
+            aP.escribirArchivo();
+    }//GEN-LAST:event_enviarMensajeActionPerformed
+
+    private void tree_chatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tree_chatsMouseClicked
+        // CLICK DERECHO SOBRE TREE
+        if (evt.isMetaDown()) {
+            //seleccionar un nodo con click derecho
+            int row = tree_chats.getClosestRowForLocation(
+                    evt.getX(), evt.getY());
+            tree_chats.setSelectionRow(row);
+            Object v1
+                    = tree_chats.getSelectionPath().
+                    getLastPathComponent();
+            DefaultMutableTreeNode nodo_seleccionado = (DefaultMutableTreeNode) v1;
+            if (nodo_seleccionado.getUserObject() instanceof Persona) {
+                System.out.println("seleccionaste el superior");
+                Usuario usuario_seleccionado = (Usuario) nodo_seleccionado.getUserObject();
+                popup_verMensaje.show(evt.getComponent(),
+                        evt.getX(), evt.getY());
+            }
+        }
+    }//GEN-LAST:event_tree_chatsMouseClicked
 
     /**
      * @param args the command line arguments
@@ -405,7 +688,7 @@ public class examen extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -431,7 +714,10 @@ public class examen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b_crearCuenta;
+    private javax.swing.JButton b_enviarSoli;
     private javax.swing.JButton b_ingresar;
+    private javax.swing.JMenuItem enviarMensaje;
+    private javax.swing.JList<String> inbox;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -440,9 +726,10 @@ public class examen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -453,18 +740,22 @@ public class examen extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JDialog jd_crearCuenta;
+    private javax.swing.JDialog jd_enviarSolicitud;
     private javax.swing.JDialog jd_ingresar;
+    private javax.swing.JLabel label_hora;
     private javax.swing.JList<String> lista_amigos;
-    private javax.swing.JList<String> lista_amigos1;
+    private javax.swing.JPopupMenu popup_enviarMensaje;
+    private javax.swing.JPopupMenu popup_verMensaje;
+    private javax.swing.JRadioButton rb_leido;
     private javax.swing.JSpinner sp_calidadWifi;
+    private javax.swing.JTextArea ta_mensaje;
     private javax.swing.JTextField tf_apellido;
     private javax.swing.JTextField tf_nombre;
     private javax.swing.JPasswordField tf_pass;
@@ -472,6 +763,40 @@ public class examen extends javax.swing.JFrame {
     private javax.swing.JTextField tf_telefono;
     private javax.swing.JTextField tf_user;
     private javax.swing.JTextField tf_userC;
+    private javax.swing.JTextField tf_userE;
     private javax.swing.JTree tree_chats;
     // End of variables declaration//GEN-END:variables
+
+    ArrayList<Usuario> usuarios = new ArrayList();
+    Usuario usuarioIngresado;
+    DefaultTreeModel modeloBASE;
+    
+    public void ingresar() {
+        jd_ingresar.setModal(true);
+        jd_ingresar.pack();
+        jd_ingresar.setLocationRelativeTo(this);
+        jd_ingresar.setVisible(true);
+        
+        //lista_inbox.setModel(new DefaultListModel());       //reiniciar a modelo base de la lisa de inbox
+    }
+    
+    public void chat0(){
+        //Usuario s = new Usuario(tf_userC.getText(), tf_pwC.getText(), wifi, tf_nombre.getText(), tf_apellido.getText(), Integer.parseInt(tf_telefono.getText()));
+        Usuario temp = new Usuario("temp1", "123", 5, "temporal", "temporal", 0001);
+        Usuario temp2 = new Usuario("temp2", "123", 5, "tempora2", "temporal", 0001);
+        admiPrivados aP = new admiPrivados("./Binarios/"+"chatsPrivados"+".ex");
+        aP.cargarArchivo();
+        
+        String contenido = JOptionPane.showInputDialog(this, "Mensaje:");
+        Date h = new Date();
+        Mensaje m = new Mensaje(contenido, h, h, false);
+
+        cPrivado shat = new cPrivado(temp, temp2);
+        shat.getMensajes().add(m);
+
+        cPrivado shat2 = new cPrivado(temp2, temp);
+        shat2.getMensajes().add(m);
+        aP.setChat(shat2);
+        aP.escribirArchivo();
+    }
 }

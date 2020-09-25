@@ -1,6 +1,8 @@
 package examen2_carlosdiaz;
 
-public abstract class Persona {
+import java.io.Serializable;
+
+public abstract class Persona implements Serializable{
     private String Nombre;
     private String Apellido;
     private int numTelefono;

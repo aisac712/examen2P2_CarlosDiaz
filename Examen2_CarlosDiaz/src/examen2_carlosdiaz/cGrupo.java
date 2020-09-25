@@ -1,8 +1,9 @@
 package examen2_carlosdiaz;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class cGrupo extends Chat{
+public class cGrupo extends Chat implements Serializable{
     //Tendrán un nombre, una lista de miembros, un administrador y una lista de mensajes
     private String Nombre;
     private ArrayList<Usuario> Miembros = new ArrayList();

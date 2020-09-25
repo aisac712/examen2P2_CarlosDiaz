@@ -1,8 +1,9 @@
 package examen2_carlosdiaz;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Mensaje {
+public class Mensaje implements Serializable{
     //Tendrán contenido, hora, fecha y si fue leído o no
     private String contenido;
     private Date horaEnviado;
