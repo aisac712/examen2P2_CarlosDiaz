@@ -1,4 +1,8 @@
-Dos usuarios:
+Dos usuarios por defecto:
 
 aisac12 y contra asdf
-danny   y contra d
+danny   y contra 123
+
+EN CASO DE QUE QUERáS DE 0, VAS A TENER QUE CERRAR LA VENTANA DE LOGIN Y CREAR UN USUARIO PARA LUEGO INICIARLO
+
+Y HACER LOGIN

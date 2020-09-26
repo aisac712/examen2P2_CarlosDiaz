@@ -74,6 +74,10 @@ public class examen extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         popup_grupo = new javax.swing.JPopupMenu();
         enviarMensajeGRUPO = new javax.swing.JMenuItem();
+        verMensajesGrupo = new javax.swing.JMenuItem();
+        anadirMiembro = new javax.swing.JMenuItem();
+        eliminarMiembro = new javax.swing.JMenuItem();
+        verMiembros = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         lista_amigos = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
@@ -95,8 +99,10 @@ public class examen extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         jLabel6.setFont(new java.awt.Font("Candara", 0, 17)); // NOI18N
         jLabel6.setText("Usuario");
@@ -401,8 +407,46 @@ public class examen extends javax.swing.JFrame {
                 .addGap(23, 23, 23))
         );
 
-        enviarMensajeGRUPO.setText("Enviar mensaje grupo");
+        enviarMensajeGRUPO.setText("Enviar MensajeG");
+        enviarMensajeGRUPO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarMensajeGRUPOActionPerformed(evt);
+            }
+        });
         popup_grupo.add(enviarMensajeGRUPO);
+
+        verMensajesGrupo.setText("Ver Mensajes");
+        verMensajesGrupo.setToolTipText("");
+        verMensajesGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verMensajesGrupoActionPerformed(evt);
+            }
+        });
+        popup_grupo.add(verMensajesGrupo);
+
+        anadirMiembro.setText("Añadir Miembro");
+        anadirMiembro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anadirMiembroActionPerformed(evt);
+            }
+        });
+        popup_grupo.add(anadirMiembro);
+
+        eliminarMiembro.setText("Eliminar un miembro");
+        eliminarMiembro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarMiembroActionPerformed(evt);
+            }
+        });
+        popup_grupo.add(eliminarMiembro);
+
+        verMiembros.setText("Ver Miembros");
+        verMiembros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verMiembrosActionPerformed(evt);
+            }
+        });
+        popup_grupo.add(verMiembros);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -486,13 +530,32 @@ public class examen extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem4.setText("Eliminar cuenta");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setText("Cerrar Sesión");
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Usuarios");
+
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem5.setText("Ver usuarios");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem5);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -510,13 +573,12 @@ public class examen extends javax.swing.JFrame {
                         .addComponent(barraMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(jButton2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -540,15 +602,13 @@ public class examen extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addComponent(jButton2)))
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -592,7 +652,7 @@ public class examen extends javax.swing.JFrame {
         for (int i = 0; i < usuarios.size(); i++) {
             userExistente = usuarios.get(i).getUser();    pwUserExistente = usuarios.get(i).getPw();
             if(tf_user.getText().equals(userExistente) && tf_pass.getText().equals(pwUserExistente)){
-                usuarioIngresado = usuarios.get(i);
+                usuarioIngresado = usuarios.get(i);     posicioUuser=i;
                 JOptionPane.showMessageDialog(this, "Bienvenido "+usuarios.get(i).getNombre());
                 jd_ingresar.setVisible(false);
                 flag=1;     //se ingreso sesion
@@ -601,14 +661,14 @@ public class examen extends javax.swing.JFrame {
         }
         //if(contador==(usuarios.size()-1) && flag==0){
         if(flag==1){
-            for (int i = 0; i < ac.getListaUsuarios().size(); i++) {
+            /*for (int i = 0; i < ac.getListaUsuarios().size(); i++) {
                 ///System.out.println( userExistente +i);
                 if (userExistente.equals(ac.getListaUsuarios().get(i).getUser())){
                     posicioUuser=i;
                     System.out.println(posicioUuser);
                     break;
                 }
-            }
+            }*/
 
 
             for (int i = 0; i < ac.getListaUsuarios().get(posicioUuser).getSolicitudes().size(); i++) {             //cargo las solicitudes de amistad q le han enviado
@@ -637,6 +697,8 @@ public class examen extends javax.swing.JFrame {
                     aA2.cargarArchivo();
                     aA2.setAmigo(userEnviaSolicitud);
                     aA2.escribirArchivo();
+                } else if(input==1 || input==2){
+                    ac.getListaUsuarios().get(posicioUuser).getSolicitudes().remove(i);
                 }
                 System.out.println(input);
             }
@@ -653,7 +715,22 @@ public class examen extends javax.swing.JFrame {
             }
             lista_amigos.setModel(modelo);
             
-            tree_chats.setModel(modeloBASE);
+            //tree_chats.setModel(modeloBASE);
+            //CARGAR GRUPOs
+            admiGrupo aG = new admiGrupo("./Binarios/"+"chatsGrupales"+".ex");
+            aG.cargarArchivo();
+            DefaultTreeModel modeloARBOL = (DefaultTreeModel) tree_chats.getModel();
+            DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+            for (int i = 0; i < aG.getListaGrupos().size(); i++) {
+                for (int j = 0; j < aG.getListaGrupos().get(i).getMiembros().size(); j++) {
+                    if(aG.getListaGrupos().get(i).getMiembros().get(j).getUser().equals(usuarioIngresado.getUser())){
+                        DefaultMutableTreeNode p = new DefaultMutableTreeNode(aG.getListaGrupos().get(i));
+                        ((DefaultMutableTreeNode) raiz.getChildAt(1)).add(p);
+                        System.out.println(" se añade al arbol a "+aG.getListaGrupos().get(i).getNombre());
+                    }
+                }
+            }
+            modeloARBOL.reload();
         } else{
             JOptionPane.showMessageDialog(this, "Esa cuenta no existe, probá con una diferente");
         }
@@ -735,7 +812,8 @@ public class examen extends javax.swing.JFrame {
         //admiPrivados aP = new admiPrivados("./Binarios/"+usuarioIngresado.getUser()+"_"+usuarioAEnviar.getUser()+".ex");
         admiPrivados aP = new admiPrivados("./Binarios/"+"chatsPrivados"+".ex");
         aP.cargarArchivo();
-        
+        DefaultTreeModel modeloARBOL = (DefaultTreeModel) tree_chats.getModel();
+                DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modeloARBOL.getRoot();
         for (int i = 0; i < aP.getListaChatsPrivs().size(); i++) {
         //for (int i = 0; i < 1; i++) {
             cPrivado chat = aP.getListaChatsPrivs().get(i);
@@ -765,8 +843,7 @@ public class examen extends javax.swing.JFrame {
                 
                 
                 aP.escribirArchivo();
-                DefaultTreeModel modeloARBOL = (DefaultTreeModel) tree_chats.getModel();
-                DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+                
                 
                 System.out.println(raiz);
                 raiz.getChildAt(0);
@@ -859,7 +936,7 @@ public class examen extends javax.swing.JFrame {
             cGrupo grupo = aP.getListaGrupos().get(i);
         }*/
         cGrupo grupo = new cGrupo(tf_nombreG.getText());
-        
+        tf_miembros.setText(tf_miembros.getText()+","+usuarioIngresado.getUser());
         String[] miembros = tf_miembros.getText().split(",");
         for (int i = 0; i < miembros.length; i++) {
             for (Usuario u : usuarios) {
@@ -870,11 +947,12 @@ public class examen extends javax.swing.JFrame {
         }
         
         aG.setGrupo(grupo);
-        
+        aG.escribirArchivo();
         DefaultTreeModel modeloARBOL = (DefaultTreeModel) tree_chats.getModel();
         DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modeloARBOL.getRoot();
         DefaultMutableTreeNode p = new DefaultMutableTreeNode(grupo);
         ((DefaultMutableTreeNode) raiz.getChildAt(1)).add(p);
+        modeloARBOL.reload();
         System.out.println(" se añade al arbol a "+grupo.getNombre());
         
         jd_crearGrupo.setVisible(false);
@@ -887,6 +965,125 @@ public class examen extends javax.swing.JFrame {
         jd_crearGrupo.setLocationRelativeTo(this);
         jd_crearGrupo.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void enviarMensajeGRUPOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarMensajeGRUPOActionPerformed
+        // ENVIAR MENSAJE A GRUPO
+        admiGrupo aG = new admiGrupo("./Binarios/"+"chatsGrupales"+".ex");
+        aG.cargarArchivo();
+        cGrupo grupo_seleccionado = (cGrupo) nodo_seleccionado.getUserObject();
+        for (int i = 0; i < aG.getListaGrupos().size(); i++) {
+            cGrupo grupo = aG.getListaGrupos().get(i);
+            if(grupo.getNombre().equals(grupo_seleccionado.getNombre())){
+                String contenido = JOptionPane.showInputDialog(this, "Mensaje a enviar: ");
+                Date h = new Date();
+                grupo.getMensajes().add(new Mensaje(contenido, h, h, false, usuarioIngresado));
+            }
+        }
+        aG.escribirArchivo();
+    }//GEN-LAST:event_enviarMensajeGRUPOActionPerformed
+
+    private void verMensajesGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verMensajesGrupoActionPerformed
+        // TODO add your handling code here:
+        reiniciarVistaMensaje();
+        admiGrupo aG = new admiGrupo("./Binarios/"+"chatsGrupales"+".ex");
+        aG.cargarArchivo();
+        cGrupo grupo_seleccionado = (cGrupo) nodo_seleccionado.getUserObject();
+        DefaultListModel modelo = (DefaultListModel) inbox.getModel();
+        for (int i = 0; i < aG.getListaGrupos().size(); i++) {
+            cGrupo grupo = aG.getListaGrupos().get(i);
+            if(grupo.getNombre().equals(grupo_seleccionado.getNombre())){
+                for (int j = 0; j < grupo.getMensajes().size(); j++) {
+                    Mensaje temp = grupo.getMensajes().get(j);
+                    modelo.addElement(temp);
+                }
+                
+            }
+        }
+        inbox.setModel(modelo);
+    }//GEN-LAST:event_verMensajesGrupoActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // SEELIMINA A UN USUARIO
+        String nombre = JOptionPane.showInputDialog(this, "Nombre user a eliminar");
+        admiUsuarios ac=new admiUsuarios("./Usuarios.ex");      ac.cargarArchivo();  int flag=0;
+        for (int i = 0; i < ac.getListaUsuarios().size(); i++) {
+            if(nombre.equals(ac.getListaUsuarios().get(i).getUser())){
+                ac.getListaUsuarios().remove(i);        flag=1;
+                ac.escribirArchivo();
+                JOptionPane.showMessageDialog(this, "Se eliminó al usuario "+nombre);
+            }
+        }
+        if(flag==0)
+            JOptionPane.showMessageDialog(this, "No se encontró a ese usuario");
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void eliminarMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarMiembroActionPerformed
+        // SE ELIMINA A UNMIEMBRO
+        String nombre = JOptionPane.showInputDialog(this, "Nombre user a eliminar");
+        admiGrupo aG = new admiGrupo("./Binarios/"+"chatsGrupales"+".ex");
+        aG.cargarArchivo();
+        cGrupo grupo_seleccionado = (cGrupo) nodo_seleccionado.getUserObject();     int flag=0;
+        for (int i = 0; i < aG.getListaGrupos().size(); i++) {
+            if(grupo_seleccionado.getNombre().equals(aG.getListaGrupos().get(i).getNombre())){
+                for (int m = 0; m < grupo_seleccionado.getMiembros().size(); m++) {
+                    if(aG.getListaGrupos().get(i).getMiembros().get(m).getUser().equals(nombre)){
+                        flag=1;
+                        aG.getListaGrupos().get(i).getMiembros().remove(m);
+                        aG.escribirArchivo();
+                        JOptionPane.showMessageDialog(this, "Se eliminó a "+nombre+" del grupo"); break;
+                    }
+                }
+            }
+        } if (flag==0)
+            JOptionPane.showMessageDialog(this, "ese usuario no existe");
+        
+    }//GEN-LAST:event_eliminarMiembroActionPerformed
+
+    private void verMiembrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verMiembrosActionPerformed
+        cGrupo grupo_seleccionado = (cGrupo) nodo_seleccionado.getUserObject();     String salida="MIEMBROS\n";
+        
+        admiGrupo aG = new admiGrupo("./Binarios/"+"chatsGrupales"+".ex");
+        aG.cargarArchivo();
+        for (int i = 0; i < aG.getListaGrupos().size(); i++) {
+            if(grupo_seleccionado.getNombre().equals(aG.getListaGrupos().get(i).getNombre())){
+                for (int m = 0; m < aG.getListaGrupos().get(i).getMiembros().size(); m++) {
+                    salida+=aG.getListaGrupos().get(i).getMiembros().get(m)+"\n";
+                }
+            }
+        } JOptionPane.showMessageDialog(this, salida);
+    }//GEN-LAST:event_verMiembrosActionPerformed
+
+    private void anadirMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anadirMiembroActionPerformed
+        String nombre = JOptionPane.showInputDialog(this, "Nombre user a añadir");
+        admiGrupo aG = new admiGrupo("./Binarios/"+"chatsGrupales"+".ex");
+        aG.cargarArchivo();
+        
+        admiUsuarios ac=new admiUsuarios("./Usuarios.ex");
+        ac.cargarArchivo();
+        cGrupo grupo_seleccionado = (cGrupo) nodo_seleccionado.getUserObject();     int flag=0;
+        for (int i = 0; i < aG.getListaGrupos().size(); i++) {
+            if(grupo_seleccionado.getNombre().equals(aG.getListaGrupos().get(i).getNombre())){
+                for (int u = 0; u < ac.getListaUsuarios().size(); u++) {
+                    Usuario menAnadir = ac.getListaUsuarios().get(u);
+                    if(menAnadir.getUser().equals(nombre)){
+                        aG.getListaGrupos().get(i).getMiembros().add(menAnadir);
+                        aG.escribirArchivo();       flag=1;
+                        JOptionPane.showMessageDialog(this, "Se añadió a "+nombre+" al grupo");
+                    }
+                }
+            }
+        }   if(flag==0)
+            JOptionPane.showMessageDialog(this, "ese usuario no existe");
+    }//GEN-LAST:event_anadirMiembroActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        admiUsuarios ac=new admiUsuarios("./Usuarios.ex");
+        ac.cargarArchivo();     String salida="USUARIOS\n";
+        for (int i = 0; i < ac.getListaUsuarios().size(); i++) {
+            salida+=ac.getListaUsuarios().get(i).getUser()+"\n";
+        }
+        JOptionPane.showMessageDialog(this, salida);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -924,10 +1121,12 @@ public class examen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem anadirMiembro;
     private javax.swing.JButton b_crearCuenta;
     private javax.swing.JButton b_enviarSoli;
     private javax.swing.JButton b_ingresar;
     private javax.swing.JProgressBar barraMensaje;
+    private javax.swing.JMenuItem eliminarMiembro;
     private javax.swing.JMenuItem enviarMensaje;
     private javax.swing.JMenuItem enviarMensajeGRUPO;
     private javax.swing.JList<String> inbox;
@@ -958,6 +1157,8 @@ public class examen extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -988,6 +1189,8 @@ public class examen extends javax.swing.JFrame {
     private javax.swing.JTextField tf_userE;
     private javax.swing.JTree tree_chats;
     private javax.swing.JMenuItem verMensaje;
+    private javax.swing.JMenuItem verMensajesGrupo;
+    private javax.swing.JMenuItem verMiembros;
     // End of variables declaration//GEN-END:variables
 
     ArrayList<Usuario> usuarios = new ArrayList();
@@ -1013,7 +1216,7 @@ public class examen extends javax.swing.JFrame {
         admiPrivados aP = new admiPrivados("./Binarios/"+"chatsPrivados"+".ex");
         aP.cargarArchivo();
         
-        String contenido = JOptionPane.showInputDialog(this, "Mensaje:");
+        String contenido = "mensaje temporal";
         Date h = new Date();
         Mensaje m = new Mensaje(contenido, h, h, false, temp);
 
