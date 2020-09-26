@@ -9,14 +9,24 @@ public class Mensaje implements Serializable{
     private Date horaEnviado;
     private Date fechaEnviado;
     private boolean leido;
+    
+    private Usuario enviadoPor;
 
-    public Mensaje(String contenido, Date horaEnviado, Date fechaEnviado, boolean leido) {
+    /*public Mensaje(String contenido, Date horaEnviado, Date fechaEnviado, boolean leido) {
         this.contenido = contenido;
         this.horaEnviado = horaEnviado;
         this.fechaEnviado = fechaEnviado;
         this.leido = leido;
-    }
+    }*/
 
+    public Mensaje(String contenido, Date horaEnviado, Date fechaEnviado, boolean leido, Usuario enviadoPor) {
+        this.contenido = contenido;
+        this.horaEnviado = horaEnviado;
+        this.fechaEnviado = fechaEnviado;
+        this.leido = leido;
+        this.enviadoPor = enviadoPor;
+    }
+    
     public String getContenido() {
         return contenido;
     }
@@ -49,6 +59,14 @@ public class Mensaje implements Serializable{
         this.leido = leido;
     }
 
+    public Usuario getEnviadoPor() {
+        return enviadoPor;
+    }
+
+    public void setEnviadoPor(Usuario enviadoPor) {
+        this.enviadoPor = enviadoPor;
+    }
+    
     @Override
     public String toString() {
         return contenido;
