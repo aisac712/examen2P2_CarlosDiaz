@@ -13,5 +13,26 @@ public class cGrupo extends Chat implements Serializable{
         super();
         this.Nombre = Nombre;
     }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    public ArrayList<Usuario> getMiembros() {
+        return Miembros;
+    }
+
+    public void setMiembros(ArrayList<Usuario> Miembros) {
+        this.Miembros = Miembros;
+    }
+    
+    @Override
+    public String toString() {
+        return Nombre;
+    }
     
 }

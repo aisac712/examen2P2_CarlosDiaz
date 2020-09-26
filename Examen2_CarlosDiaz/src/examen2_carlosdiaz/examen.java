@@ -21,7 +21,7 @@ public class examen extends javax.swing.JFrame {
         initComponents();
         modeloBASE = (DefaultTreeModel) tree_chats.getModel();
         ingresar();
-        //chat0();
+        chat0();
     }
 
     /**
@@ -64,6 +64,16 @@ public class examen extends javax.swing.JFrame {
         enviarMensaje = new javax.swing.JMenuItem();
         popup_verMensaje = new javax.swing.JPopupMenu();
         verMensaje = new javax.swing.JMenuItem();
+        jd_crearGrupo = new javax.swing.JDialog();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        tf_nombreG = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        tf_miembros = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        popup_grupo = new javax.swing.JPopupMenu();
+        enviarMensajeGRUPO = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         lista_amigos = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
@@ -81,6 +91,7 @@ public class examen extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         label_enviadopor = new javax.swing.JLabel();
         barraMensaje = new javax.swing.JProgressBar();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -323,6 +334,76 @@ public class examen extends javax.swing.JFrame {
         });
         popup_verMensaje.add(verMensaje);
 
+        jLabel18.setFont(new java.awt.Font("Candara", 1, 22)); // NOI18N
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setText("Crear grupo");
+
+        jLabel19.setFont(new java.awt.Font("Candara", 0, 17)); // NOI18N
+        jLabel19.setText("Nombre");
+
+        jLabel20.setFont(new java.awt.Font("Candara", 0, 17)); // NOI18N
+        jLabel20.setText("Miembros");
+
+        jLabel21.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel21.setText("*con coma y sin espacios");
+
+        jButton3.setText("Crear Grupo");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_crearGrupoLayout = new javax.swing.GroupLayout(jd_crearGrupo.getContentPane());
+        jd_crearGrupo.getContentPane().setLayout(jd_crearGrupoLayout);
+        jd_crearGrupoLayout.setHorizontalGroup(
+            jd_crearGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_crearGrupoLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jd_crearGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel21)
+                    .addGroup(jd_crearGrupoLayout.createSequentialGroup()
+                        .addComponent(jLabel20)
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_miembros, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_crearGrupoLayout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_nombreG, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 74, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_crearGrupoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jd_crearGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_crearGrupoLayout.createSequentialGroup()
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(113, 113, 113))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_crearGrupoLayout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(22, 22, 22))))
+        );
+        jd_crearGrupoLayout.setVerticalGroup(
+            jd_crearGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_crearGrupoLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addGroup(jd_crearGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(tf_nombreG, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_crearGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(tf_miembros, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(23, 23, 23))
+        );
+
+        enviarMensajeGRUPO.setText("Enviar mensaje grupo");
+        popup_grupo.add(enviarMensajeGRUPO);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lista_amigos.setFont(new java.awt.Font("Candara", 0, 15)); // NOI18N
@@ -387,6 +468,13 @@ public class examen extends javax.swing.JFrame {
         label_enviadopor.setFont(new java.awt.Font("Candara", 0, 15)); // NOI18N
         label_enviadopor.setText("enviado por:");
 
+        jButton2.setText("+Grupo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Inicio");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
@@ -422,8 +510,12 @@ public class examen extends javax.swing.JFrame {
                         .addComponent(barraMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(jButton2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -454,7 +546,9 @@ public class examen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32))
-                    .addComponent(jButton1))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(jButton2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -587,6 +681,7 @@ public class examen extends javax.swing.JFrame {
         ac.escribirArchivo();
         
         JOptionPane.showMessageDialog(this, "Se creó la cuenta exitosamente");
+        tf_userC.setText(""); tf_pwC.setText(""); tf_nombre.setText(""); tf_apellido.setText(""); tf_telefono.setText(""); sp_calidadWifi.setValue(0);
         jd_crearCuenta.setVisible(false);
         //usuarios.add(s);
     }//GEN-LAST:event_b_crearCuentaActionPerformed
@@ -673,9 +768,11 @@ public class examen extends javax.swing.JFrame {
                 DefaultTreeModel modeloARBOL = (DefaultTreeModel) tree_chats.getModel();
                 DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modeloARBOL.getRoot();
                 
+                System.out.println(raiz);
                 raiz.getChildAt(0);
+                
                 DefaultMutableTreeNode p = new DefaultMutableTreeNode(usuarioAEnviar);
-                ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
+                ((DefaultMutableTreeNode) raiz.getChildAt(0)).add(p);
                 System.out.println(" se añade al arbol a "+usuarioAEnviar.getUser());
                 break;
             }
@@ -699,6 +796,9 @@ public class examen extends javax.swing.JFrame {
                 System.out.println("seleccionaste el superior");
                 usuario_seleccionado = (Usuario) nodo_seleccionado.getUserObject();
                 popup_verMensaje.show(evt.getComponent(),
+                        evt.getX(), evt.getY());
+            } else if(nodo_seleccionado.getUserObject() instanceof cGrupo){
+                popup_grupo.show(evt.getComponent(),
                         evt.getX(), evt.getY());
             }
         }
@@ -749,6 +849,45 @@ public class examen extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_inboxMouseClicked
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // CREAR GRUPO
+        admiGrupo aG = new admiGrupo("./Binarios/"+"chatsGrupales"+".ex");
+        aG.cargarArchivo();
+        
+        /*for (int i = 0; i < aP.getListaGrupos().size(); i++) {
+        //for (int i = 0; i < 1; i++) {
+            cGrupo grupo = aP.getListaGrupos().get(i);
+        }*/
+        cGrupo grupo = new cGrupo(tf_nombreG.getText());
+        
+        String[] miembros = tf_miembros.getText().split(",");
+        for (int i = 0; i < miembros.length; i++) {
+            for (Usuario u : usuarios) {
+                if(miembros[i].equals(u.getUser())){
+                    grupo.getMiembros().add(u);
+                }
+            }
+        }
+        
+        aG.setGrupo(grupo);
+        
+        DefaultTreeModel modeloARBOL = (DefaultTreeModel) tree_chats.getModel();
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+        DefaultMutableTreeNode p = new DefaultMutableTreeNode(grupo);
+        ((DefaultMutableTreeNode) raiz.getChildAt(1)).add(p);
+        System.out.println(" se añade al arbol a "+grupo.getNombre());
+        
+        jd_crearGrupo.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        jd_crearGrupo.setModal(true);
+        jd_crearGrupo.pack();
+        jd_crearGrupo.setLocationRelativeTo(this);
+        jd_crearGrupo.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -790,8 +929,11 @@ public class examen extends javax.swing.JFrame {
     private javax.swing.JButton b_ingresar;
     private javax.swing.JProgressBar barraMensaje;
     private javax.swing.JMenuItem enviarMensaje;
+    private javax.swing.JMenuItem enviarMensajeGRUPO;
     private javax.swing.JList<String> inbox;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -801,7 +943,11 @@ public class examen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -818,18 +964,22 @@ public class examen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JDialog jd_crearCuenta;
+    private javax.swing.JDialog jd_crearGrupo;
     private javax.swing.JDialog jd_enviarSolicitud;
     private javax.swing.JDialog jd_ingresar;
     private javax.swing.JLabel label_enviadopor;
     private javax.swing.JLabel label_hora;
     private javax.swing.JList<String> lista_amigos;
     private javax.swing.JPopupMenu popup_enviarMensaje;
+    private javax.swing.JPopupMenu popup_grupo;
     private javax.swing.JPopupMenu popup_verMensaje;
     private javax.swing.JRadioButton rb_leido;
     private javax.swing.JSpinner sp_calidadWifi;
     private javax.swing.JTextArea ta_mensaje;
     private javax.swing.JTextField tf_apellido;
+    private javax.swing.JTextField tf_miembros;
     private javax.swing.JTextField tf_nombre;
+    private javax.swing.JTextField tf_nombreG;
     private javax.swing.JPasswordField tf_pass;
     private javax.swing.JTextField tf_pwC;
     private javax.swing.JTextField tf_telefono;
